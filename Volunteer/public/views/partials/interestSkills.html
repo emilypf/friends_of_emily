@@ -1,0 +1,25 @@
+<!-- <img id="logo" src="./style/TEPF-Logo-Transparent.png" alt="Emily Program logo"> -->
+<div class="container">
+  <div class="background">
+  <button type="button" class="prevButt" ng-click="skillsPrev()"> < Previous</button>
+  <h1 id="skillsHeader">Skills & Interests</h1>
+  <div id="skillsSection">
+    <label for="skills">I have the following skills (check all that apply):</label>
+    <div ng-repeat="item in skills" >
+      <input class="checkboxSkill" ng-model="skillsIn[item.skill]" type="checkbox">
+      <label class="skillItems">{{ item.skill }}</label>
+    </div>
+  </div>
+  <br></br>
+  <div id="interestsSection">
+    <label for="interests">The Emily Program Foundation depends on committed volunteers for our work. Please indicate which
+    opportunities you are able to commit to while volunteering with us (check all that apply):</label>
+    <div ng-repeat="item in interests">
+      <input ng-model="interestsIn[item.interest]" type="checkbox">
+      <label class="interestItems">{{ item.interest }}</label>
+    </div>
+  </div>
+  <button type="button" class="nextButt" ng-click="skillsNext()">Next ></button>
+  <p class="prog">Page 2 of 5</p>
+  </div>
+</div>

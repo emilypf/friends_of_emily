@@ -1,0 +1,120 @@
+<div class="container body-section">
+  <h3 class="h3-header">Administrator Tools</h3>
+  <div class="container admin-subsection">
+    <h4>Current Administrators:</h4>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Email address</th>
+          <th>Name</th>
+          <th class="td-centered">Remove this admin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="admin in adminArray">
+          <td style="vertical-align: middle;">{{admin.googleEmail}}</td>
+          <td style="vertical-align: middle;"><span ng-show="admin.googleName">{{admin.googleName}}</span><span ng-hide="admin.googleName" class="italic">Not yet logged in.</span></td>
+          <td style="vertical-align: middle;" class="td-centered"><button ng-click="removeAdmin(admin._id)" type="button" class="btn btn-sm btn-danger" aria-label="Remove Admin">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="input-group admin-input">
+    <h4>Add a new administrator:</h4>
+    </div>
+    <div class="input-group admin-input">
+      <span class="input-group-addon">Email address:</span>
+      <input type="text" class="form-control" ng-model="inputEmail">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" ng-click="addAdmin()">Add new admin</button>
+      </span>
+    </div>
+  </div>
+
+  <h3 class="h3-header">Volunteer Application Settings</h3>
+  <div class="container admin-subsection">
+    <div class="col-xs-6">
+      <h4>Skills:</h4>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Skill name</th>
+            <th class="td-centered">Shown in<br/>application?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="skill in skillArray">
+            <td style="vertical-align: middle;">{{skill.skill}}</td>
+            <td style="vertical-align: middle;" class="td-centered">
+              <toggle style="quick" type="checkbox" ng-model="skill.used" ng-change="switchSkill(skill._id, skill.used)" on="Yes" off="No" onstyle="btn-success" offstyle="btn-danger">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>Add a new skill:</h4>
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="inputSkill">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" ng-click="addSkill()">Add new skill</button>
+        </span>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <h4>Interests:</h4>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Interest name</th>
+            <th class="td-centered">Shown in<br/>application?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="interest in interestArray">
+            <td style="vertical-align: middle;">{{interest.interest}}</td>
+            <td style="vertical-align: middle;" class="td-centered">
+              <toggle style="quick" type="checkbox" ng-model="interest.used" ng-change="switchInterest(interest._id, interest.used)" on="Yes" off="No" onstyle="btn-success" offstyle="btn-danger">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>Add a new interest:</h4>
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="inputInterest">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" ng-click="addInterest()">Add new interest</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="container admin-subsection">
+    <h4 style="margin-top: 50px;">Essay Questions:</h4>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Question Text</th>
+          <th class="td-centered">Edit this<br/>question</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="index in [1, 2, 3, 4]">
+          <td>Question #{{index}}</td>
+          <td>{{essayqObject[index]}}</td>
+          <td style="vertical-align: middle;" class="td-centered"><button ng-click="modifyQuestionButton(index)" type="button" class="btn btn-sm btn-success">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          </button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container admin-subsection" ng-repeat="index in [1, 2, 3, 4]" ng-show="questionToEdit == index">
+      <div class="form-group row">
+        <label for="template-name" class="col-xs-3 col-form-label">Edit Question #{{index}}</label>
+        <div class="col-xs-9"><textarea class="form-control" ng-model="inputEssayQ" rows="3"></textarea></div>
+      </div>
+      <button class="btn btn-primary" type="button" ng-click="saveQuestion(index, inputEssayQ)">Save this essay question</button>
+      <button class="btn btn-link" type="button" ng-click="cancelQuestion()">Cancel</button>
+    </div>
+    <hr>
+  </div>
+</div>
