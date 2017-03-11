@@ -16,15 +16,9 @@ var confirmEmailRouter = require('./server/routes/confirmEmail.js');
 var sendEmailRouter = require('./server/routes/private/sendEmail.js');
 var volunteerRouter = require('./server/routes/private/volunteer.js');
 var isLoggedIn = require('./server/utils/auth');
-//USE THIS DATA FOR ROBO MONGO CONNECTION TO SHARED DB **NOT PRODUCTION**
-//USERNAME:EPFG
-//PASSWORD:96Y3ohjxVDdCse0b16kB
-//address:ds159507.mlab.com
-//PORT: 59507
-//DATABSE NAME: heroku_6d86ggqz
-var mongoURI = "mongodb://EPFG:96Y3ohjxVDdCse0b16kB@ds159507.mlab.com:59507/heroku_6d86ggqz";
+
 var session = require('express-session');
-var MongoDB = mongoose.connect(mongoURI).connection;
+var MongoDB = mongoose.connect(process.env.MONGODB_URI).connection;
 
 //app.use('/public', express.static('public'));  // serve files from public
 app.use(express.static('Volunteer/public'));
