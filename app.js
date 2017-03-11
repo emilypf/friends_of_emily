@@ -75,7 +75,7 @@ app.use('/volunteer', isLoggedIn, volunteerRouter);
 
 //listen on port 3000
 app.listen((process.env.PORT || '3000'), function(){
-  console.log("listening on port 3000");
+  console.log("Server listening");
 });
 
 // Temporary code to make all Prime group members admins.
