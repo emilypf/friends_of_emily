@@ -48,6 +48,11 @@ router.post('/', function(req, res) {
   console.log('hit the applicant post (ouch!), req.body-> ', req.body);
   var data = req.body;
 
+console.log('date?:', data.dateOfBirth);
+if (data.dateOfBirth) {
+
+}
+
   var newPerson = new Applicant({
 
     additionalInfo: data.additionalInfo,
