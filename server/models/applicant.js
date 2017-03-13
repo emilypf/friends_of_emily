@@ -16,7 +16,7 @@ var applicantSchema = new Schema({
       email: String,
       phoneNum: Number,
     },
-    dateOfBirth: Date,
+    dateOfBirth: {type: Date, default: '01011900'},
     emergencyContact: {
       name: String,
       phone: Number
