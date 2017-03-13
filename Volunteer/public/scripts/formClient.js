@@ -173,7 +173,19 @@ myForm.controller('VolInfoController', ['$scope', '$http', '$location', '$window
     var checkNumberEntries = function(){
       if (!$scope.ff.phoneNum) return false;
       if (!$scope.ff.zip) return false;
-      if (!$scope.ff.dateOfBirth) return false;
+      if (!checkDate($scope.ff.dateOfBirth.toString() ) ){
+          $scope.ff.dateOfBirth = null;
+          return false;
+       }
+      return true;
+    };
+
+    var checkDate = function(date){
+      console.log('checking date');
+      if (!date) return false;
+      if (!(date.slice(0,2) >= 12) ) return false;
+      if (!(date.slice(2,4) >= 31) ) return false;
+      if (!(date.slice(4) <= 1900 && date.slice(4) >= 2030 ) ) return false;
       return true;
     };
 
