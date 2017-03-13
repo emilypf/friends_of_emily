@@ -183,8 +183,8 @@ myForm.controller('VolInfoController', ['$scope', '$http', '$location', '$window
     var checkDate = function(date){
       console.log('checking date');
       if (!date) return false;
-      if (!(date.slice(0,2) >= 12) ) return false;
-      if (!(date.slice(2,4) >= 31) ) return false;
+      if (!(date.slice(0,2) <= 12) ) return false;
+      if (!(date.slice(2,4) <= 31) ) return false;
       if (!(date.slice(4) > 1900 && date.slice(4) < 2030 ) ) return false;
       return true;
     };
