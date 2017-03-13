@@ -49,7 +49,8 @@ router.post('/', function(req, res) {
   var data = req.body;
 
   console.log('date?:', data.dateOfBirth);
-  var date = new date (data.dateOfBirth);
+  var date = ( date(data.dateOfBirth) );
+  if (!date) date = ( date('1900-01-01') );
   console.log('new date!:' date);
 
   var newPerson = new Applicant({
