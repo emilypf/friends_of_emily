@@ -48,11 +48,6 @@ router.post('/', function(req, res) {
   console.log('hit the applicant post (ouch!), req.body-> ', req.body);
   var data = req.body;
 
-  console.log('date?:', data.dateOfBirth);
-  var date = ( date(data.dateOfBirth) );
-  if (!date) date = ( date('1900-01-01') );
-  console.log('new date!:', date);
-
   var newPerson = new Applicant({
 
     additionalInfo: data.additionalInfo,
@@ -66,7 +61,6 @@ router.post('/', function(req, res) {
       email: data.email,
       phoneNum: data.phoneNum,
     },
-    dateOfBirth: data.dateOfBirth,
     emergencyContact: {
       name: data.emergancyName,
       phone: data.emergancyPhone
@@ -108,6 +102,12 @@ router.post('/', function(req, res) {
         res.sendStatus(500);
       }else {
         console.log('new applicant added');
+
+        newPerson.dateOfBirth = data.dateOfBirth;
+        newPerson.save(function(err){
+          if(err) console.log(err);
+        })
+        
         res.sendStatus(201);
       } // end if else
   }); // end save
